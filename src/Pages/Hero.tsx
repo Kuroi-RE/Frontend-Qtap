@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createSignal } from "solid-js";
+import Swal from "sweetalert2";
 
 const [person, setPerson] = createSignal("PenyuDev");
 const [quote, setQuote] = createSignal("Klik untuk mendapatkan kutipan");
@@ -9,6 +10,18 @@ const [quote, setQuote] = createSignal("Klik untuk mendapatkan kutipan");
 //   quote: String,
 //   lang: String,
 // }
+
+const showToast = (message: string, icon: "success" | "error") => {
+  Swal.fire({
+    toast: true,
+    position: "top-end",
+    icon,
+    title: message,
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+  });
+};
 
 const fetchData = async () => {
   try {
@@ -25,17 +38,18 @@ const fetchData = async () => {
     setQuote(response.data.quote);
   } catch (error) {
     console.error("Error fetching data:", error);
-    alert("Error fetching data. Please try again later.");
+    showToast("Failed to fetch data!", "error");
   }
 };
 
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text).then(
     () => {
-      alert("Copied to clipboard!");
+      showToast("Text copied to clipboard!", "success");
       console.log("Text copied to clipboard:", text);
     },
     (err) => {
+      showToast("Failed to copy text!", "error");
       console.error("Could not copy text: ", err);
     }
   );
