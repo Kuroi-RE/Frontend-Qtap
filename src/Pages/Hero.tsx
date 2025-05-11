@@ -2,6 +2,8 @@ import axios from "axios";
 import { createSignal } from "solid-js";
 import Swal from "sweetalert2";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 const [person, setPerson] = createSignal("PenyuDev");
 const [quote, setQuote] = createSignal("Klik untuk mendapatkan kutipan");
 
@@ -27,7 +29,7 @@ const fetchData = async () => {
   try {
     const response = await axios({
       method: "GET",
-      url: "http://localhost:5000/quote?lang=id",
+      url: `${baseUrl}/quote?lang=id`,
       withCredentials: false,
       headers: {
         "Content-Type": "application/json",
