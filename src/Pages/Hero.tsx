@@ -89,7 +89,6 @@ const Hero = () => {
           onChange={HandleLanguage}
           class="block w-full rounded-xl border border-gray-300 bg-gray-800 text-white py-2 px-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value="">-- Pilih Bahasa --</option>
           <option value="id">Bahasa Indonesia</option>
           <option value="Sundanese">Sunda</option>
           <option value="Javanese">Jawa</option>
